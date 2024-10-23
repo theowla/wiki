@@ -18,6 +18,11 @@ def index(request):
 def entry(request, title):
     html_content = convertToHtml(title)
     if html_content == None:
-        return render(request, "encyclopedia/error.html")
+        return render(request, "encyclopedia/error.html", {
+            "message": "this entry does not exist"
+        })
     else:
-        return render(request, "encyclopedia/entry.html")
+        return render(request, "encyclopedia/entry.html", {
+            "title": title,
+            "content": html_content
+        })
